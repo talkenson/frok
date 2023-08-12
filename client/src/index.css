@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-white font-opensans text-base text-main-text;
+  }
+  .layout {
+    padding-bottom: max(env(safe-area-inset-bottom), 1.5rem);
+    padding-top: max(env(safe-area-inset-top), 1.5rem);
+  }
+  .fullscreen {
+    @apply h-full w-full;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-black;
+  }
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl font-semibold;
+  }
+
+}
+
+html,
+body,
+#root {
+  @apply h-full w-full;
+}
+
+@keyframes fade-in {
+  from {
+    @apply opacity-0;
+  }
+  to {
+    @apply opacity-100;
+  }
+}
+
+@keyframes slide-from-bottom {
+  from {
+    @apply translate-y-4;
+  }
+  to {
+    @apply translate-y-0;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+input:-internal-autofill-selected {
+  -webkit-text-fill-color: initial !important;
+  background-color: inherit !important;
+  -webkit-box-shadow: none !important;
+}
