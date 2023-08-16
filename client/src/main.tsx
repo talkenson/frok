@@ -6,6 +6,7 @@ import '@/assets/fonts/opensans/stylesheet.css'
 import { ErrorBoundary } from '@/screens/ErrorBoundary'
 import { useDeviceInfoStore } from '@/config/context/deviceInfo.store'
 import { Device } from '@capacitor/device'
+import OneSignal from 'react-onesignal'
 
 const initApp = async () => {
   if (true) {

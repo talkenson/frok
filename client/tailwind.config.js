@@ -16,7 +16,7 @@ const safeAreaPlugin = plugin(
           paddingRight: addSafeAreaInset('right', value),
         }),
         pbs: value => ({
-          paddingBottom: addSafeAreaInset('right', value),
+          paddingBottom: addSafeAreaInset('bottom', value),
         }),
         pls: value => ({
           paddingLeft: addSafeAreaInset('left', value),
@@ -103,6 +103,38 @@ const safeAreaPlugin = plugin(
   },
 )
 
+const fadeEffectPlugin = plugin(({ matchUtilities, theme }) => {
+  const getOneSideFadeProps = direction => value => ({
+    'mask-image':
+      'linear-gradient(' +
+      `to ${direction},` +
+      'black,' +
+      `black calc(100% - ${value}),` +
+      'transparent' +
+      ')',
+  })
+
+  const getBothSideFadeProps = direction => value => ({
+    'mask-image': `linear-gradient(${
+      direction === 'x' ? '90deg' : '0deg'
+    }, rgba(0,0,0,0) 0%, rgba(0,0,0,1) ${value}, rgba(0,0,0,1) calc(100% - ${value}), rgba(0,0,0,0) 100%)`,
+  })
+
+  matchUtilities(
+    {
+      'fade-top': getOneSideFadeProps('top'),
+      'fade-right': getOneSideFadeProps('right'),
+      'fade-bottom': getOneSideFadeProps('bottom'),
+      'fade-left': getOneSideFadeProps('left'),
+      'fade-x': getBothSideFadeProps('x'),
+      'fade-y': getBothSideFadeProps('y'),
+    },
+    {
+      values: theme('inset'),
+    },
+  )
+})
+
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -145,11 +177,6 @@ module.exports = {
           900: '#2a4621',
           950: '#13260d',
         },
-
-        main: {
-          default: '#283342',
-          text: '#283342',
-        },
       }),
       animation: {
         'fade-in': 'fade-in 0.1s ease-in forwards;',
@@ -163,14 +190,14 @@ module.exports = {
       },
     },
   },
-  plugins: [safeAreaPlugin, require('daisyui')],
+  plugins: [safeAreaPlugin, fadeEffectPlugin, require('daisyui')],
   daisyui: {
     themes: [
       {
         mytheme: {
           primary: '#7c3aed',
           secondary: '#d926a9',
-          accent: '#1fb2a6',
+          accent: '#5da63c',
           neutral: '#4b5563',
           'base-100': '#1f2937',
           info: '#3abff8',

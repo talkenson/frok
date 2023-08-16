@@ -4,6 +4,7 @@ import { minify as minifyHtml } from 'html-minifier'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import svgr from 'vite-plugin-svgr'
 import { DateTime } from 'luxon'
+import unpluginIcons from 'unplugin-icons/vite'
 
 const minifyHtmlPlugin = (): Plugin => ({
   name: 'frok:minify-html',
@@ -25,6 +26,11 @@ const minifyHtmlPlugin = (): Plugin => ({
 export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
+      unpluginIcons({
+        autoInstall: true,
+        compiler: 'jsx',
+        jsx: 'react',
+      }),
       tsconfigPaths(),
       svgr(),
       {

@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  @apply bg-zinc-900 font-opensans text-base text-zinc-50;
+}
+
 @layer base {
-  html {
-    @apply bg-white font-opensans text-base text-main-text;
-  }
   .layout {
-    padding-bottom: max(env(safe-area-inset-bottom), 1.5rem);
-    padding-top: max(env(safe-area-inset-top), 1.5rem);
+    padding-bottom: max(env(safe-area-inset-bottom), 0rem);
+    padding-top: max(env(safe-area-inset-top), 0rem);
   }
   .fullscreen {
     @apply h-full w-full;
@@ -19,7 +20,7 @@
   h4,
   h5,
   h6 {
-    @apply text-black;
+    @apply text-zinc-50;
   }
   h1 {
     @apply text-2xl;
@@ -36,14 +37,6 @@ body,
   @apply h-full w-full;
 }
 
-@keyframes fade-in {
-  from {
-    @apply opacity-0;
-  }
-  to {
-    @apply opacity-100;
-  }
-}
 
 @keyframes slide-from-bottom {
   from {
@@ -67,4 +60,20 @@ input:-internal-autofill-selected {
   -webkit-text-fill-color: initial !important;
   background-color: inherit !important;
   -webkit-box-shadow: none !important;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(30px); }
+}
+
+@keyframes slide-to-left {
+  to { transform: translateX(-30px); }
 }
